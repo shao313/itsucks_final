@@ -20,7 +20,14 @@
       <form action="/update_complaint/<%= @complaint.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      <!-- Label and input for company_id -->
+      <div class="form-group">
+        <label for="company_id" class="control-label">
+          Company
+        </label>
 
+        <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :company_name, @complaint.company_id), :class => "form-control") %>
+      </div>
       <!-- Label and input for caption -->
       <div class="form-group">
         <label for="caption_id" class="control-label">
@@ -69,8 +76,7 @@
       <!-- Label and input for user_id -->
       <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= @complaint.user.id %>">
 
-      <!-- Label and input for company_id -->
-      <input type="hidden" id="company_id" name="company_id" class="form-control" value="<%= @complaint.company.id %>">
+
 
 <div class="form-group">
       <button class="btn btn-success btn-block">
