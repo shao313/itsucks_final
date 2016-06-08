@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   has_many :complaints
   has_many :sucks
   has_many :sucked_companies, :through => :sucks, :source => :complaint
+  has_many :blacklists, :through => :sucks, :source => :complaint
   validates :username, :presence => true, :uniqueness => true
 end

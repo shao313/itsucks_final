@@ -1,4 +1,9 @@
 class ComplaintsController < ApplicationController
+  def my_blacklists
+    @complaints = current_user.blacklists
+  end
+
+
   def index
     @complaints = Complaint.all
   end
