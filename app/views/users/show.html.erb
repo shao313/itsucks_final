@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="jumbotron">
+      <h3>
+        <%= @user.username %>
+      </h3>
+
+      <div class="row padding-inside-top-sm">
+
+        <div class="col-md-12">
+          <p class="lead">
+            <%= @user.complaints.count %> complaint, <%= @user.comments.count %> comment, and <%= @user.sucked_companies.count %> hated companies
+          </p>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% if @user == current_user %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <a href="/complaints/new" class="btn btn-default btn-block">
+      <i class="fa fa-plus"></i>
+    </a>
+
+    <hr>
+  </div>
+</div>
+<% end %>
+
+<%= render @user.complaints %>
