@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   root "complaints#index"
 
   get "/my_blacklists", :controller => "complaints", :action => "my_blacklists"
+  get "/sucked_companies", :controller => "complaints", :action => "sucked_companies"
 
   # Routes for the User resource:
   # READ
