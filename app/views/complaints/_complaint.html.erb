@@ -3,13 +3,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title pull-left">
-          <h3><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks
-          </h3> <small> by <%= link_to complaint.user.username, "/users/#{complaint.user.id}" %> <%= time_ago_in_words(complaint.created_at) %> ago </small> </div>
+          <h3><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks</h3>
+          <small> by <%= link_to complaint.user.username, "/users/#{complaint.user.id}" %> <%= time_ago_in_words(complaint.created_at) %> ago </small> </div>
           <div class="panel-title pull-right"><p>
             <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
             <% if suck.present? %>
             <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
-              <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="35px" height="35px" />
+              <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="30px" height="35px" />
             </a>
             <% if complaint.haters.count == 1 %>
             <%= complaint.haters.pluck(:username).to_sentence %> agrees
@@ -27,7 +27,7 @@
               <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
               <button class="btn btn-link">
-                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="25px" height="35px">
+                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="20px" height="30px">
                 <!-- <i class="fa fa-heart-o"></i> -->
               </button>
 
@@ -41,99 +41,52 @@
               <% else %>
               <small class="text-muted">be the first to agree</small>
               <% end %>
-            </form>
-            <% end %>
-          </p></div>
-          <div class="clearfix"></div>
-        </div>
+              <!-- </form> -->
+              <% end %>
+            </p></div>
+            <div class="clearfix"></div>
+          </div>
 
 
 
-        <div class="panel-body">
-          <a href="/complaints/<%= complaint.id %>">
-            <div class="row padding-inside-top-sm">
-              <div class="col-xs-12">
+          <div class="panel-body">
+            <a href="/complaints/<%= complaint.id %>">
+              <div class="row padding-inside-top-sm">
+                <div class="col-xs-12">
 
-                <%= truncate(complaint.body, :length=>133) %></div> </div>
+                  <%= truncate(complaint.body, :length=>133) %></div> </div>
 
-                <div class="row padding-inside-top-md padding-inside-bottom-md">
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_1 %>" class="img-thumbnail"   >
+                  <div class="row padding-inside-top-md padding-inside-bottom-md">
+                    <div class="col-xs-6 col-md-3">
+                      <a href="/complaints/<%= complaint.id %>" >
+                        <img src="<%= complaint.image_1 %>" class="img-thumbnail"   >
+                      </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <a href="/complaints/<%= complaint.id %>" >
+                        <img src="<%= complaint.image_2 %>" class="img-thumbnail"   >
+                      </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <a href="/complaints/<%= complaint.id %>" >
+                        <img src="<%= complaint.image_3 %>" class="img-thumbnail"   >
+                      </a>
+                    </div>
+                  </div>
+
+
+                  <p>
+                    <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
+                    <% if suck.present? %>
+                    <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
+                      <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="20px" height="25px" />
                     </a>
-                  </div>
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_2 %>" class="img-thumbnail"   >
-                    </a>
-                  </div>
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_3 %>" class="img-thumbnail"   >
-                    </a>
-                  </div>
-                </div>
-
-
-              <p>
-                <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
-                <% if suck.present? %>
-                <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
-                  <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="20px" height="20px" />
-                  </a>
-                <% if complaint.haters.any? %>
-                <%= complaint.haters.pluck(:username).to_sentence %>
-                <%= complaint.haters.many? ? "agree" : "agrees" %> with this
-                <% end %>
-                <% else %>
-                <form action="/create_suck" method="post">
-                  <!-- Hidden input for authenticity token to protect from forgery -->
-                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-                  <input type="hidden" name="complaint_id" value="<%= complaint.id %>">
-
-                  <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-                  <button class="btn btn-link">
-                      <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="17px" height="20px">
-                  </button>
-
-                  <% if complaint.haters.any? %>
-                  <%= complaint.haters.pluck(:username).to_sentence %>
-                  <%= complaint.haters.many? ? "agree" : "agrees" %> with this
-                  <% else %>
-                  <small class="text-muted">be the first to agree</small>
-                  <% end %>
-                </form>
-                <% end %>
-              </p>
-
-
-              <ul class="media-list">
-
-
-                <% complaint.comments.each do |comment| %>
-                <li class="media">
-                  <div class="media-body">
-                    <h6 class="media-heading">
-                      <%= link_to comment.user.username, "/users/#{comment.user.id}" %>
-                      <small>
-                        <%= time_ago_in_words(comment.created_at) %> ago
-                        <% if comment.user == current_user %>
-                        <a href="/delete_comment/<%= comment.id %>">
-                          <i class="fa fa-trash"></i>
-                        </a>
-                        <% end %>
-                      </small>
-                    </h6>
-                    <%= comment.body %>
-                  </div>
-                </li>
-                <% end %>
-
-                <li class="media">
-                  <div class="media-body">
-                    <form action="/create_comment" method="post">
+                    <% if complaint.haters.any? %>
+                    <%= complaint.haters.pluck(:username).to_sentence %>
+                    <%= complaint.haters.many? ? "agree" : "agrees" %> with this
+                    <% end %>
+                    <% else %>
+                    <form action="/create_suck" method="post">
                       <!-- Hidden input for authenticity token to protect from forgery -->
                       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -141,19 +94,66 @@
 
                       <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-                      <!-- Label and input for body -->
-                      <div class="form-group">
-                        <label for="body" class="sr-only">
-                          Body
-                        </label>
+                      <button class="btn btn-link">
+                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="12px" height="20px">
+                      </button>
 
-                        <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
-                      </div>
+                      <% if complaint.haters.any? %>
+                      <%= complaint.haters.pluck(:username).to_sentence %>
+                      <%= complaint.haters.many? ? "agree" : "agrees" %> with this
+                      <% else %>
+                      <small class="text-muted">be the first to agree</small>
+                      <% end %>
                     </form>
-                  </div>
-                </li>
-              </ul>
+                    <% end %>
+                  </p>
+
+
+                  <ul class="media-list">
+
+
+                    <% complaint.comments.each do |comment| %>
+                    <li class="media">
+                      <div class="media-body">
+                        <h6 class="media-heading">
+                          <%= link_to comment.user.username, "/users/#{comment.user.id}" %>
+                          <small>
+                            <%= time_ago_in_words(comment.created_at) %> ago
+                            <% if comment.user == current_user %>
+                            <a href="/delete_comment/<%= comment.id %>">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                            <% end %>
+                          </small>
+                        </h6>
+                        <%= comment.body %>
+                      </div>
+                    </li>
+                    <% end %>
+
+                    <li class="media">
+                      <div class="media-body">
+                        <form action="/create_comment" method="post">
+                          <!-- Hidden input for authenticity token to protect from forgery -->
+                          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                          <input type="hidden" name="complaint_id" value="<%= complaint.id %>">
+
+                          <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+                          <!-- Label and input for body -->
+                          <div class="form-group">
+                            <label for="body" class="sr-only">
+                              Body
+                            </label>
+
+                            <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
+                          </div>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
