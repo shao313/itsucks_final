@@ -4,13 +4,13 @@ class ComplaintsController < ApplicationController
   end
 
   def sucked_companies
-    @complaints = Complaint.all
-    @companies = Company.all
-    
+    @complaints = Complaint.all.order("created_at DESC")
+    @companies = Company.all.order("company_name ASC")
+
   end
 
   def index
-    @complaints = Complaint.all
+    @complaints = Complaint.all.order("created_at DESC")
   end
 
   def show
