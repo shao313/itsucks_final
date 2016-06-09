@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title pull-left">
-          <h3><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks</h3>
+          <h4><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks</h4>
           <small> by <%= link_to complaint.user.username, "/users/#{complaint.user.id}" %> <%= time_ago_in_words(complaint.created_at) %> ago </small> </div>
           <div class="panel-title pull-right"><p>
             <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
@@ -47,16 +47,12 @@
             <div class="clearfix"></div>
           </div>
 
-
-
           <div class="panel-body">
             <a href="/complaints/<%= complaint.id %>">
-              <div class="row padding-inside-top-sm">
+              <div class="row padding-inside-top-xs">
                 <div class="col-xs-12">
-
-                  <%= truncate(complaint.body, :length=>133) %></div> </div>
-
-                  <div class="row padding-inside-top-md padding-inside-bottom-md">
+                  <%= truncate(complaint.body, :length=>100) %></div> </div>
+                  <div class="row padding-inside-top-xs padding-inside-bottom-xs">
                     <div class="col-xs-6 col-md-3">
                       <a href="/complaints/<%= complaint.id %>" >
                         <img src="<%= complaint.image_1 %>" class="img-thumbnail"   >
@@ -115,7 +111,7 @@
                     <% complaint.comments.each do |comment| %>
                     <li class="media">
                       <div class="media-body">
-                        <h6 class="media-heading">
+                        <h5 class="media-heading">
                           <%= link_to comment.user.username, "/users/#{comment.user.id}" %>
                           <small>
                             <%= time_ago_in_words(comment.created_at) %> ago
@@ -125,7 +121,7 @@
                             </a>
                             <% end %>
                           </small>
-                        </h6>
+                        </h5>
                         <%= comment.body %>
                       </div>
                     </li>
