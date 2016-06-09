@@ -3,6 +3,11 @@ class ComplaintsController < ApplicationController
     @complaints = current_user.blacklists
   end
 
+  def sucked_companies
+    @complaints = Complaint.all
+    @companies = Company.all
+    
+  end
 
   def index
     @complaints = Complaint.all
