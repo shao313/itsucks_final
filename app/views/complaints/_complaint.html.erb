@@ -3,13 +3,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title pull-left">
-          <h3><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks
-          </h3> <small> by <%= link_to complaint.user.username, "/users/#{complaint.user.id}" %> <%= time_ago_in_words(complaint.created_at) %> ago </small> </div>
+          <h4><%= link_to complaint.company.company_name, "/companies/#{complaint.company.id}" %>'s <%= complaint.caption.name %> Sucks</h4>
+          <small> by <%= link_to complaint.user.username, "/users/#{complaint.user.id}" %> <%= time_ago_in_words(complaint.created_at) %> ago </small> </div>
           <div class="panel-title pull-right"><p>
             <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
             <% if suck.present? %>
             <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
-              <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="35px" height="35px" />
+              <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="30px" height="35px" />
             </a>
             <% if complaint.haters.count == 1 %>
             <%= complaint.haters.pluck(:username).to_sentence %> agrees
@@ -27,7 +27,7 @@
               <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
               <button class="btn btn-link">
-                <img src="data:image/png;base64,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" width="25px" height="35px">
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSt85zquQ2lWn9RwLUkDH6Yy3OVZK4Ai22gAR3GyWSOwR6krHPU" width="30px" height="30px">
                 <!-- <i class="fa fa-heart-o"></i> -->
               </button>
 
@@ -41,99 +41,43 @@
               <% else %>
               <small class="text-muted">be the first to agree</small>
               <% end %>
-            </form>
-            <% end %>
-          </p></div>
-          <div class="clearfix"></div>
-        </div>
+              <!-- </form> -->
+              <% end %>
+            </p></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="panel-body">
+            <a href="/complaints/<%= complaint.id %>">
+              <div class="row padding-inside-top-xs">
+                <div class="col-xs-12">
+                  <%= truncate(complaint.body, :length=>100) %></div> </div>
+                  <div class="row padding-inside-top-xs padding-inside-bottom-xs">
+                    <div class="col-xs-6 col-md-3">
+                      <a href="/complaints/<%= complaint.id %>" >
+                        <img src="<%= complaint.image_3 %>" class="img-thumbnail">
+                      </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                      <a href="/complaints/<%= complaint.id %>" >
+                        <img src="<%= complaint.image_4 %>" class="img-thumbnail">
+                      </a>
+                    </div>
+                  </div>
 
 
-
-        <div class="panel-body">
-          <a href="/complaints/<%= complaint.id %>">
-            <div class="row padding-inside-top-sm">
-              <div class="col-xs-12">
-
-                <%= complaint.body %></div> </div>
-
-                <div class="row padding-inside-top-md padding-inside-bottom-md">
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_1 %>" class="img-thumbnail"   >
+                  <p>
+                    <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
+                    <% if suck.present? %>
+                    <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
+                      <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="20px" height="25px" />
                     </a>
-                  </div>
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_2 %>" class="img-thumbnail"   >
-                    </a>
-                  </div>
-                  <div class="col-xs-6 col-md-3">
-                    <a href="/complaints/<%= complaint.id %>" >
-                      <img src="<%= complaint.image_3 %>" class="img-thumbnail"   >
-                    </a>
-                  </div>
-                </div>
-
-
-              <p>
-                <% suck = Suck.find_by(:complaint_id => complaint.id, :user_id => current_user.id) %>
-                <% if suck.present? %>
-                <a href="/delete_suck/<%= suck.id %>" class="btn btn-link">
-                  <img src="http://emojipedia-us.s3.amazonaws.com/cache/6e/9a/6e9a28a11111f10077752e28ff627b5f.png" width="20px" height="20px" />
-                  </a>
-                <% if complaint.haters.any? %>
-                <%= complaint.haters.pluck(:username).to_sentence %>
-                <%= complaint.haters.many? ? "agree" : "agrees" %> with this
-                <% end %>
-                <% else %>
-                <form action="/create_suck" method="post">
-                  <!-- Hidden input for authenticity token to protect from forgery -->
-                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-                  <input type="hidden" name="complaint_id" value="<%= complaint.id %>">
-
-                  <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-                  <button class="btn btn-link">
-                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL8AAAEICAMAAAA5jNVNAAAAe1BMVEX///8AAACpqamXl5e1tbVycnLV1dWGhobAwMC7u7uNjY3n5+fOzs5DQ0Pt7e3w8PD4+Pijo6NJSUkjIyPf39/Hx8c9PT1WVlacnJxsbGweHh4MDAwtLS1RUVFfX196eno0NDRbW1tubm4YGBg4ODiAgIBlZWWRkZEhISFduiqKAAAHB0lEQVR4nO2d63qyOhBGBRXwUAHPra1aW+13/1e4rRMtIoQJhszw7Fk/K9UFwyGEN6HTaYjAD7fLL897ezkNB6OmfqUZEv/Du2cTzqml0MwPXhHTMbUYinhbaP/Lx4Rarpq01P4Xn1qvivKNDxyoBfUs/0zfh4N58vu3OPBPmaOAWlHH501zndvVB/vbQUCjhsG/OvYKPoyuH/ade2FRgqeSjz81a8cBtfmHpQuEagVih1IGwLnnVbPEEfxXzpSM+HeR016jVLOCZ1sC3LSLJLBM4MjIDIR/Z9dy/774N4b40yL+tIg/LeJPi/jTIv60iD8t4k+L+NMi/rSIPy3iT4v40yL+tIg/LeJPi/jTIv60iD8t4k+L+NMi/rSIPy3iT4v40yL+tIg/LeJPS2v84yDqpd1hGA67aW8Bo1w6tfyTeDKJE90/WGYyOL54D6y6v2PTjPyDtJ8Z7DP72K2jxgcZxuv3R/cr2/EG7Z8Wj9DzVusG96y45EdzYPx19BsaZuhX/rIdf8/bpA3oh9W/a8v/TGRbv5f99q/tce0Poiga9PzuLjdU1sj/fTmdLosOqqNl/9sXr9LHQyxeDN9M/TdhdlBzMo/Wr1/ZFQit6l8Hz6Wl5+r5ycR/X3iQJtHxbwWsjlHqXr5SP3Qxwvt/li8wfm1iDxpevnKhXwjvrz1FTqaIjWUI+FecFSz5d+LLMlYH2jr1n4h/HvFX/I/84/l8ZGukMIH/lenOf75RTeh/YR8unrpLo/a/FCKtP30HB/8z337NKjDxP3OodTA49R+p/WW7XX0XrMGyohlWBIG/Ov8n816Y7/H4Nq4Bgf9L9k9B974SJ8PjgNr/TOxPs2swqJbOwMD/zGS9+VuBXYXyHTz8z0R/+5HJDQ4b//MN5q27wmAaEkb+mb6c8pli8rDy7yTXIxndR8HL/zoNia4f4x5u/tcVwN4fsPNXk/VgrwL8/KE7fK1f6AY/fzgJdR/+Phn31uHucOgff9JBcG1mtMN/nn56OTav/sim/+5rNps145/+y8sr3lPVf2vBH0Mt/3WJPPDN3H/0Vqidw/pTnWLM/QOMPV//7A3z5jT0o3EQBItBevxoh//tQfi2l78gj3or9v4LpXcsbk0kP8z91XP18pv6eMnaH24qtb0qM7f+52vcW8XtYcYfNq52aXj6bnbP3yziT4v40yL+tIg/LeJPi/jTIv60iD8t4k+L+NMi/rSIPy3iT4v40yL+tIg/LeJPi/jTIv60mPnDuFBOLz40849Hv7ic6KAKM39+PPhz2rkRZPwhIfOP2siMjP8cCuAonWGJbH4JYlYzYiMzsv5BCwtwl9+DPP07rZEZRfnDGgPDyLjPf0IB9oQ+ptz7j1tXgFx+GIbofVMamZHzVwVoaO6dBsjntyGhXRFaZETef9GyAjzk//eXP1idtaBJHvxVAXhOLffI4/gLGFdoddqXBnn0j1pVgILxO7M2FaDAfwAF4Ply+TxF46dgEAx6UCQpRf5tKkDh+DuYwWxLY2RGoX+vPQUoHv8IQzFOJEZmFPurAjQ+E+fzlIw/Bf9XCiMzSvz9thSgbPwv+B8IjMw4lvirAtSf6sgRoFlwww4f9N0bGVE+WWTaigLAbJ2Fk4SCv9H0Lu7RtPVVAWxNHdcIcPb5Kv4Q/G3PQGuVj5Kzz4U1+wLE+quUV35w8AB28dLeQpgtweP0uPEe6OvxSz9nXoBR1fZlXgAY0K6ZPioBf/z8TG6BuxTdA98fzgUIStsON1QBflwpGXFE3KMMq9eRjNKmZwZVgJIrHCkL1KYN2RbggGreqAJgJ5hyiKbpmeXItADQSbipXC5mWoAV9szIswCJvumZQRWgiZeBPAH0L6CiGjuOBVjiN6qalqm8mUqAanri7q36/AoALWPkU16GBYBHRNgg6oFbAeZm7WK1t/HJ3UKrBv984sSsAKCDD+oxK8DYeHNCAUo6upwDJ0STrs05qwKAjFHG55NRAQY1jkZVABbp7u1FxbBXBNqrHMLFqulp+HSaT7rbr7clP/At1mZ5qXdDxSXdrVpj5g+2mKS74bFEjYQnk3T3rHZjmEW42LDpmYVFuht6NOtlk+Cmc2nZyIxnrqMM0t3mTc8s9Olu6AypG2ugT3c/KUCd7ka93FMDdbpbk9fAQZvurtf0zEKb7tbmNXDA5dvgnT020eY1cFCGiyvyGjgI092pjes/YQGq8ho4yNLdlXkNHGTh4sq8BhKqdHd1XgMHUQEQeQ0k8EWu092YvAYOmnQ3/KiVuz/vqVZ4PXB5DRwU6W54ob2lOCpBAaw2HN2Hi7F5DSTg7zDdjc5r4HBdAHxeAwl838l3BPQ77K3pV7zorCFshmAo/G3url33+na7Ddz72318+1P9g5axm2NOUlcnH4Wu5f8f6ORQ81ZW/UYAAAAASUVORK5CYII=" width="17px" height="20px">
-                  </button>
-
-                  <% if complaint.haters.any? %>
-                  <%= complaint.haters.pluck(:username).to_sentence %>
-                  <%= complaint.haters.many? ? "agree" : "agrees" %> with this
-                  <% else %>
-                  <small class="text-muted">be the first to agree</small>
-                  <% end %>
-                </form>
-                <% end %>
-              </p>
-
-
-              <ul class="media-list">
-
-
-                <% complaint.comments.each do |comment| %>
-                <li class="media">
-                  <div class="media-body">
-                    <h6 class="media-heading">
-                      <%= link_to comment.user.username, "/users/#{comment.user.id}" %>
-                      <small>
-                        <%= time_ago_in_words(comment.created_at) %> ago
-                        <% if comment.user == current_user %>
-                        <a href="/delete_comment/<%= comment.id %>">
-                          <i class="fa fa-trash"></i>
-                        </a>
-                        <% end %>
-                      </small>
-                    </h6>
-                    <%= comment.body %>
-                  </div>
-                </li>
-                <% end %>
-
-                <li class="media">
-                  <div class="media-body">
-                    <form action="/create_comment" method="post">
+                    <% if complaint.haters.any? %>
+                    <%= complaint.haters.pluck(:username).to_sentence %>
+                    <%= complaint.haters.many? ? "agree" : "agrees" %> with this
+                    <% end %>
+                    <% else %>
+                    <form action="/create_suck" method="post">
                       <!-- Hidden input for authenticity token to protect from forgery -->
                       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -141,19 +85,66 @@
 
                       <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-                      <!-- Label and input for body -->
-                      <div class="form-group">
-                        <label for="body" class="sr-only">
-                          Body
-                        </label>
+                      <button class="btn btn-link">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSt85zquQ2lWn9RwLUkDH6Yy3OVZK4Ai22gAR3GyWSOwR6krHPU" width="20px" height="20px">
+                      </button>
 
-                        <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
-                      </div>
+                      <% if complaint.haters.any? %>
+                      <%= complaint.haters.pluck(:username).to_sentence %>
+                      <%= complaint.haters.many? ? "agree" : "agrees" %> with this
+                      <% else %>
+                      <small class="text-muted">be the first to agree</small>
+                      <% end %>
                     </form>
-                  </div>
-                </li>
-              </ul>
+                    <% end %>
+                  </p>
+
+
+                  <ul class="media-list">
+
+
+                    <% complaint.comments.each do |comment| %>
+                    <li class="media">
+                      <div class="media-body">
+                        <h5 class="media-heading">
+                          <%= link_to comment.user.username, "/users/#{comment.user.id}" %>
+                          <small>
+                            <%= time_ago_in_words(comment.created_at) %> ago
+                            <% if comment.user == current_user %>
+                            <a href="/delete_comment/<%= comment.id %>">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                            <% end %>
+                          </small>
+                        </h5>
+                        <%= comment.body %>
+                      </div>
+                    </li>
+                    <% end %>
+
+                    <li class="media">
+                      <div class="media-body">
+                        <form action="/create_comment" method="post">
+                          <!-- Hidden input for authenticity token to protect from forgery -->
+                          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                          <input type="hidden" name="complaint_id" value="<%= complaint.id %>">
+
+                          <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+                          <!-- Label and input for body -->
+                          <div class="form-group">
+                            <label for="body" class="sr-only">
+                              Body
+                            </label>
+
+                            <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
+                          </div>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>

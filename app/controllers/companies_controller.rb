@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
     @company.company_name = params[:company_name]
 
     if @company.save
-      redirect_to "/companies", :notice => "Company created successfully."
+      redirect_to "/complaints/new", :notice => "Company created successfully."
     else
       render 'new'
     end
