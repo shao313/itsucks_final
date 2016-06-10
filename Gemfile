@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+#Upload Pictures
+gem 'carrierwave'
 # Faker
 gem 'faker', group: [:test, :development]
 # Devise

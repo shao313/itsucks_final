@@ -28,6 +28,7 @@ class ComplaintsController < ApplicationController
     @complaint.image_1 = params[:image_1]
     @complaint.image_2 = params[:image_2]
     @complaint.image_3 = params[:image_3]
+    @complaint.image_4 = params[:image_4]
     @complaint.user_id = params[:user_id]
     @complaint.company_id = params[:company_id]
 

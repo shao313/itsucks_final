@@ -27,7 +27,7 @@
               <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
               <button class="btn btn-link">
-                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="20px" height="30px">
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSt85zquQ2lWn9RwLUkDH6Yy3OVZK4Ai22gAR3GyWSOwR6krHPU" width="30px" height="30px">
                 <!-- <i class="fa fa-heart-o"></i> -->
               </button>
 
@@ -55,17 +55,12 @@
                   <div class="row padding-inside-top-xs padding-inside-bottom-xs">
                     <div class="col-xs-6 col-md-3">
                       <a href="/complaints/<%= complaint.id %>" >
-                        <img src="<%= complaint.image_1 %>" class="img-thumbnail"   >
+                        <img src="<%= complaint.image_3 %>" class="img-thumbnail">
                       </a>
                     </div>
                     <div class="col-xs-6 col-md-3">
                       <a href="/complaints/<%= complaint.id %>" >
-                        <img src="<%= complaint.image_2 %>" class="img-thumbnail"   >
-                      </a>
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                      <a href="/complaints/<%= complaint.id %>" >
-                        <img src="<%= complaint.image_3 %>" class="img-thumbnail"   >
+                        <img src="<%= complaint.image_4 %>" class="img-thumbnail">
                       </a>
                     </div>
                   </div>
@@ -91,7 +86,7 @@
                       <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
                       <button class="btn btn-link">
-                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmGKWfLbk6tQSrK9hKFaYTfR3g8ZWL_BUBO68ZhkCpzaHFx9JH0Q" width="12px" height="20px">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSt85zquQ2lWn9RwLUkDH6Yy3OVZK4Ai22gAR3GyWSOwR6krHPU" width="20px" height="20px">
                       </button>
 
                       <% if complaint.haters.any? %>

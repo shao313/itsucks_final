@@ -9,4 +9,6 @@ class Complaint < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :body, :presence => true
   validates :caption, :presence => true
+  mount_uploader :image_3, ImageUploader
+  mount_uploader :image_4, ImageUploader
 end

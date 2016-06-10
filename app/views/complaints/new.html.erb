@@ -63,7 +63,7 @@
           Upload Picture 1
         </label>
 
-        <input type="text" id="image_1" name="image_1" placeholder="Image 1" class="form-control" value="<%= @complaint.image_1 %>">
+      <input type="file" id="image_3" name="image_3" class="form-control">
       </div>
 
       <!-- Label and input for image_2 -->
@@ -72,17 +72,17 @@
           Upload Picture 2
         </label>
 
-        <input type="text" id="image_2" name="image_2" placeholder="Image 2" class="form-control" value="<%= @complaint.image_2 %>">
+        <input type="file" id="image_4" name="image_4" class="form-control">
       </div>
 
       <!-- Label and input for image_3 -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="image_3" class="control-label">
           Upload Picture 3
         </label>
 
         <input type="text" id="image_3" name="image_3" placeholder="Image 3" class="form-control" value="<%= @complaint.image_3 %>">
-      </div>
+      </div> -->
 
       <!-- Label and input for user_id -->
         <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
